@@ -1,4 +1,5 @@
 import sys
+from os import path
 from sklearn.preprocessing import MinMaxScaler
 
 
@@ -22,9 +23,12 @@ def get_scale():
 
 
 def get_theta():
+    if not path.exists("theta.csv"):
+        return 0.0, 0.0
     file = open("theta.csv", "r")
     line = file.read()
     (t_0, t_1) = line.split(",")
+    file.close()
     return float(t_0), float(t_1)
 
 
